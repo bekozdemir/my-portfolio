@@ -1,9 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { projects } from "../data/projects.js";
 
 function Projects() {
-  const handleProjectClick = () => {
+  const navigate = useNavigate();
+
+  const handleProjectClick = (e, projectId) => {
+    e.preventDefault();
+
     sessionStorage.setItem("homeScrollY", String(window.scrollY));
+    e.currentTarget.classList.add("clicked");
+
+    setTimeout(() => {
+      navigate(`/projects/${projectId}`);
+    }, 150);
   };
 
   return (
@@ -20,17 +29,7 @@ function Projects() {
               to={`/projects/${project.id}`}
               className="project-link"
               key={project.id}
-              onClick={(e) => {
-                  e.preventDefault();
-
-                  const link = `/projects/${project.id}`;
-
-                  e.currentTarget.classList.add("clicked");
-
-                  setTimeout(() => {
-                    window.location.href = link;
-                  }, 150);
-                }}
+              onClick={(e) => handleProjectClick(e, project.id)}
             >
               <article className="project-card">
                 <h3>{project.title}</h3>
