@@ -2,6 +2,14 @@ import { FaLinkedin } from "react-icons/fa";
 import profileImg from "../assets/beko.jpg";
 
 function Hero() {
+  const scrollToSection = (sectionId) => {
+  const element = document.getElementById(sectionId);
+
+  if (element) {
+    element.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+};
+  
   return (
     <section id="home" className="hero section">
       <div className="container hero-grid">
@@ -18,9 +26,13 @@ function Hero() {
           </p>
 
           <div className="hero-buttons">
-            <a href="#projects" className="btn btn-primary">
-              View Projects
-            </a>
+            <button type="button"
+              className="btn btn-primary hero-action-btn"
+              onClick={() => scrollToSection("projects")}
+            > View Projects
+            </button>
+
+            
 
             <a href="/cv.pdf" className="btn btn-secondary" target="_blank" rel="noreferrer">
               Download CV
@@ -35,9 +47,12 @@ function Hero() {
               LinkedIn
             </a>
 
-            <a href="#contact" className="btn btn-secondary">
+           <button
+            type="button"
+            className="btn btn-secondary hero-action-btn"
+            onClick={() => scrollToSection("contact")} >
               Contact Me
-            </a>
+          </button>
           </div>
 
           <div className="hero-stats">

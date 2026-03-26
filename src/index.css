@@ -655,3 +655,12 @@ button {
     grid-template-columns: 1fr; /* mobil */
   }
 }
+
+.hero-action-btn {
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  outline: none;
+  font: inherit;
+  cursor: pointer;
+}
