@@ -1,23 +1,42 @@
+import { useNavigate, useLocation } from "react-router-dom";
+
 function Navbar() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleNavClick = (id) => {
+    if (location.pathname !== "/") {
+      navigate("/");
+
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    } else {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <nav style={styles.nav}>
-      <h2>Berkay Özdemir</h2>
-      <div>
-        <a href="#about">About</a> |{" "}
-        <a href="#projects">Projects</a> |{" "}
-        <a href="#contact">Contact</a>
+    <header className="navbar">
+      <div className="container navbar-inner">
+        <div className="logo">Berkay</div>
+
+        <nav className="nav-links">
+          <button type="button" onClick={() => handleNavClick("projects")}>
+            Projects
+          </button>
+          <button type="button" onClick={() => handleNavClick("certificates")}>
+            Certificates
+          </button>
+          <button type="button" onClick={() => handleNavClick("contact")}>
+            Contact
+          </button>
+        </nav>
       </div>
-    </nav>
+    </header>
   );
 }
-
-const styles = {
-  nav: {
-    display: "flex",
-    justifyContent: "space-between",
-    padding: "20px",
-    borderBottom: "1px solid #eee",
-  },
-};
 
 export default Navbar;
